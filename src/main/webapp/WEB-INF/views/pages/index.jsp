@@ -9,8 +9,10 @@
 <html>
 <head>
     <title>Title</title>
+<%--    <link href="/static/css/tailwind.css" rel="stylesheet" />--%>
+    <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body>
-    <h1>this is index page</h1>
+    <%@include file="components/Header.jsp"%>
 </body>
 </html>
