@@ -1,31 +1,48 @@
 package com.example.springboard.repository;
 
 import com.example.springboard.model.UserEntity;
+import static org.assertj.core.api.Assertions.assertThat;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
-
-@DataJpaTest
+@ExtendWith(SpringExtension.class)
+@SpringBootTest
 public class UserRepositoryTest {
     @Autowired
     private UserRepository userRepository;
 
+    @AfterEach
+    public void reset() {
+        userRepository.deleteAll();
+    }
+
+
+
     @Test
+    @DisplayName("유저 저장 테스트")
     public void testSaveUser() {
         // given
-//        UserEntity user = new UserEntity();
-//        user.setUsername("asdf");
-//        user.setEmail("asdf@asdf.asdf");
-//        System.out.println(user.getId());
-        // when
-//        userRepository.save(user);
+        UserEntity insertUser = userRepository.save(UserEntity.builder().username("asdf").email("asdf@asdf.com").build());
 
         // then
-//        assertNotNull(user.getId(), "User ID는 null이 될 수 있습니다");
-
+        assertThat("asdf@asdf.com").isEqualTo(insertUser.getEmail());
+        assertThat("asdf").isEqualTo(insertUser.getUsername());
     }
+
+    @Test
+    @DisplayName("유저 이름으로 찾기")
+    public void findUsername() {
+        UserEntity insertUser = userRepository.save(UserEntity.builder().username("asdf").email("asdf@asdf.com").build());
+
+        UserEntity findUser = userRepository.findByUsername("asdf");
+
+        assertThat(insertUser.getUsername()).isEqualTo(findUser.getUsername());
+    }
+
 
 }

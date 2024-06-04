@@ -5,7 +5,7 @@
   Time: 오후 7:30
   To change this template use File | Settings | File Templates.
 --%>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page contentType="text/html;charset=UTF-8" language="java" pageEncoding="UTF-8" %>
 <html>
 <head>
     <title>Title</title>
@@ -13,6 +13,9 @@
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body>
-    <%@include file="components/Header.jsp"%>
+    <div class="h-full flex flex-col">
+        <%@include file="../components/Header.jsp"%>
+        <%@include file="../components/Content.jsp"%>
+    </div>
 </body>
 </html>
