@@ -18,7 +18,8 @@ public class UserRepositoryTest {
 
     @AfterEach
     public void reset() {
-        userRepository.deleteAll();
+        UserEntity user = userRepository.findByUsername("asdf");
+        userRepository.delete(user);
     }
 
 
