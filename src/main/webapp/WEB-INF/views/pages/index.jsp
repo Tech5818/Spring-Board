@@ -13,9 +13,7 @@
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body>
-    <div class="h-full flex flex-col">
-        <%@include file="../components/Header.jsp"%>
-        <%@include file="../components/Content.jsp"%>
-    </div>
+    <%@include file="../components/Header.jsp"%>
+    <p class="text-[40px] font-bold">This page is Main Page</p>
 </body>
 </html>
